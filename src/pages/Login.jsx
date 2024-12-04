@@ -1,23 +1,56 @@
 import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context";
 
 export default function Login() {
-  const { singInUser } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+  const { singInUser, singInWithGoogle, setUser } = useContext(AuthContext);
+
+  const onSubmit = (data) => {
+    // singIn
+    singInUser(data.email, data.password)
+      .then((result) => {
+        console.log(result);
+        reset();
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleSingIngWithGoogle = () => {
+    singInWithGoogle()
+      .then((result) => {
+        setUser(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        setUser(null);
+      });
+  };
 
   return (
     <div className="hero  min-h-screen">
       <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl">
         <h1 className="text-5xl font-bold text-center pt-8">Login now!</h1>
-        <form className="card-body">
+        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
+              {...register("email", { required: true })}
               type="email"
-              name="email"
               placeholder="email"
               className="input input-bordered"
               required
@@ -28,8 +61,8 @@ export default function Login() {
               <span className="label-text">Password</span>
             </label>
             <input
+              {...register("password", { required: true })}
               type="password"
-              name="password"
               placeholder="password"
               className="input input-bordered"
               required
@@ -52,7 +85,11 @@ export default function Login() {
             <button className="btn btn-primary">Login</button>
           </div>
           <div className="form-control mt-3">
-            <button type="button" className="btn btn-success text-white">
+            <button
+              onClick={handleSingIngWithGoogle}
+              type="button"
+              className="btn btn-success text-white"
+            >
               <FaGoogle />
               Login with Google
             </button>
