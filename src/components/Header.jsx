@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { AuthContext } from "../context";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const user = false;
+  const { user, singOutUser, setUser } = useContext(AuthContext);
 
   const onLogout = () => {
-    console.log("onLogOUt");
+    singOutUser()
+      .then(() => {
+        console.log("user logged out successfully");
+        setUser(null);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -77,10 +85,11 @@ function Header() {
             ) : (
               <div className="relative flex items-center">
                 <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0YsgBw5MLXuXwWACiRUhdny4i74PjrzaGKQ&s"
+                  referrerPolicy="no-referrer"
+                  src={user?.photoURL}
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full cursor-pointer"
-                  title="hero alom"
+                  title={user?.displayName}
                   onClick={() => navigate("/profile")}
                 />
                 <button

@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context";
 
 export default function Login() {
+  const { singInUser } = useContext(AuthContext);
+
   return (
     <div className="hero  min-h-screen">
       <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl">
