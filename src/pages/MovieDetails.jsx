@@ -1,7 +1,38 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function MovieDetails() {
+  const navigate = useNavigate();
   const movie = useLoaderData();
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:8000/movies/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              navigate("/movies");
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div>
@@ -62,7 +93,10 @@ export default function MovieDetails() {
                 <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md">
                   Add to Favorites
                 </button>
-                <button className="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-md">
+                <button
+                  onClick={() => handleDelete(movie._id)}
+                  className="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-md"
+                >
                   Delete Movie
                 </button>
               </div>

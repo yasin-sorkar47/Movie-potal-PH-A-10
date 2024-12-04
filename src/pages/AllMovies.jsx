@@ -46,7 +46,7 @@ export default function AllMovies() {
         {/* See All Movies Button */}
         <div className="text-center mt-8">
           <Link
-            to={-1}
+            to={"/"}
             className="inline-block px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-lg"
           >
             Goto Home
