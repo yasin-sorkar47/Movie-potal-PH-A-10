@@ -2,7 +2,7 @@ import serviceImage from "../assets/services_img02.jpg";
 
 export default function OurServices() {
   return (
-    <section className="bg-gradient-to-r from-[#23262f] to-[#11151c] text-white py-20">
+    <section className="bg-gradient-to-r from-[#23262f] to-[#11151c] text-white py-20 ">
       <div className="w-11/12 mx-auto px-6 flex flex-col lg:flex-row items-center justify-between">
         {/* Left Side: Text */}
         <div className="lg:w-1/2">

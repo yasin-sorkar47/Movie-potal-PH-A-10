@@ -1,6 +1,6 @@
 export default function PricingSection() {
   return (
-    <section className="bg-gradient-to-r from-[#23262f] to-[#11151c] text-white py-20 mt-[100px]">
+    <section className="bg-gradient-to-r from-[#23262f] to-[#11151c] text-white py-20  my-[100px]">
       <div className="w-11/12 mx-auto px-6 text-center">
         <p>OUR PRICING PLANS</p>
         <h2 className="text-4xl font-bold mb-8 text-yellow-500">

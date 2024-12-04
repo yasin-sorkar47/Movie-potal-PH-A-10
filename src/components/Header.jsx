@@ -47,7 +47,7 @@ function Header() {
             {user && (
               <>
                 <li>
-                  <Link to="/add-movie" className="block p-2 hover:bg-gray-700">
+                  <Link to="/addMovie" className="block p-2 hover:bg-gray-700">
                     Add Movie
                   </Link>
                 </li>
