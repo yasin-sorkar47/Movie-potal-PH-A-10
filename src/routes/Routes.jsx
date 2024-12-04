@@ -5,6 +5,7 @@ import AddMovies from "../pages/AddMovies";
 import AllMovies from "../pages/AllMovies";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import MovieDetails from "../pages/MovieDetails";
 import MyFavorites from "../pages/MyFavorites";
 import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
@@ -18,10 +19,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch("http://localhost:8000/movies?limit=6"),
       },
       {
         path: "/movies",
         element: <AllMovies />,
+        loader: () => fetch("http://localhost:8000/movies"),
+      },
+      {
+        path: "/movieDetails/:id",
+        element: <MovieDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:8000/movies/${params.id}`),
       },
       {
         path: "/addMovie",

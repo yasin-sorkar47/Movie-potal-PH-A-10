@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import Swal from "sweetalert2";
 import { AuthContext } from "../context";
 
 const AddMovies = () => {
@@ -13,6 +14,11 @@ const AddMovies = () => {
   });
 
   const { user } = useContext(AuthContext);
+
+  const years = [
+    2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013,
+    2012, 2011, 2010,
+  ];
 
   const [rating, setRating] = useState(0);
   const [errors, setErrors] = useState({});
@@ -61,9 +67,23 @@ const AddMovies = () => {
         isFavorite: false,
       };
 
-      console.log("Submitted Movie Data:", movieData);
-
-      alert("Movie added successfully!");
+      fetch("http://localhost:8000/movies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movieData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            Swal.fire({
+              title: "Good job!",
+              text: "You have added movie successfully!",
+              icon: "success",
+            });
+          }
+        });
 
       //   reset the form
       setFormData({
@@ -160,7 +180,7 @@ const AddMovies = () => {
             className="w-full p-2 mt-2 bg-gray-800 text-white border border-gray-700 rounded"
           >
             <option value="">Select Year</option>
-            {[2024, 2023, 2022, 2021, 2020].map((year) => (
+            {years.map((year) => (
               <option key={year} value={year}>
                 {year}
               </option>
