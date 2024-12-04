@@ -9,8 +9,8 @@ import logo from "../assets/logo.png";
 
 function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-8 mt-16">
-      <div className="container mx-auto px-6 md:px-12">
+    <footer className="bg-gray-800 text-white py-10 mt-16">
+      <div className="w-11/12 mx-auto px-6 md:px-12">
         {/* Footer Content */}
         <div className="flex flex-col md:flex-row justify-between">
           {/* Website Name and Copyright */}
