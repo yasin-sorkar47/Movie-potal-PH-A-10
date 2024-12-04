@@ -2,7 +2,6 @@ import { Link, useRouteError } from "react-router-dom";
 
 export default function NotFound() {
   const err = useRouteError();
-  console.log(err.error.message, err.status);
 
   return (
     <div className="bg-gradient-to-r from-[#23262f] to-[#11151c] min-h-screen flex flex-col justify-center items-center text-white">
