@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const AboutUs = () => {
   return (
     <div className="dark:bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-700 dark:text-white py-16 px-6">
@@ -30,7 +32,7 @@ const AboutUs = () => {
         </div>
         <div>
           <img
-            src="https://via.placeholder.com/600x400" // Replace with a relevant image URL
+            src="https://thumbs.dreamstime.com/b/handwriting-text-writing-our-mission-concept-meaning-tasks-schedule-need-to-made-them-right-order-success-woman-wear-161510246.jpg"
             alt="Movie Experience"
             className="rounded-lg shadow-lg"
           />
@@ -80,7 +82,7 @@ const AboutUs = () => {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
         <div>
           <img
-            src="https://via.placeholder.com/600x400" // Replace with a vision-related image URL
+            src="https://t4.ftcdn.net/jpg/03/30/28/45/360_F_330284507_zWMKJuSAPN2VyomK4et4dTdHi2P8lmHb.jpg"
             alt="Future Vision"
             className="rounded-lg shadow-lg"
           />
@@ -101,12 +103,15 @@ const AboutUs = () => {
 
       {/* Call to Action */}
       <div className="text-center">
-        <h3 className="text-3xl font-semibold text-yellow-500 mb-4">
+        <h3 className="text-3xl font-semibold text-yellow-500 mb-8">
           Ready to Start Your Cinematic Journey?
         </h3>
-        <button className="px-8 py-3 bg-yellow-500 text-gray-900 font-bold rounded-lg shadow-md hover:bg-yellow-400 transition-all">
+        <Link
+          to={"/"}
+          className="px-8 py-3 bg-yellow-500 text-gray-900 font-bold rounded-lg shadow-md hover:bg-yellow-400 transition-all"
+        >
           Explore Movies Now
-        </button>
+        </Link>
       </div>
     </div>
   );
