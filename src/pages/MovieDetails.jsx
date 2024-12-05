@@ -22,7 +22,7 @@ export default function MovieDetails() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8000/movies/${id}`, {
+        fetch(`https://movie-fix-server-a-10.vercel.app/movies/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -56,7 +56,7 @@ export default function MovieDetails() {
     );
 
     if (!isExits) {
-      fetch(`http://localhost:8000/favorite`, {
+      fetch(`https://movie-fix-server-a-10.vercel.app/favorite`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

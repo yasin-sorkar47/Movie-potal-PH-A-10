@@ -7,7 +7,6 @@ export default function MyFavorites() {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const filteredMovies = data.filter((movie) => movie?.email === user?.email);
-
   const [movies, setMovies] = useState(filteredMovies);
 
   const handleDelete = (id) => {
@@ -21,7 +20,7 @@ export default function MyFavorites() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8000/favorite/${id}`, {
+        fetch(`https://movie-fix-server-a-10.vercel.app/favorite/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

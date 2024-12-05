@@ -21,12 +21,13 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:8000/movies?limit=6"),
+        loader: () =>
+          fetch("https://movie-fix-server-a-10.vercel.app/movies?limit=6"),
       },
       {
         path: "/movies",
         element: <AllMovies />,
-        loader: () => fetch("http://localhost:8000/movies"),
+        loader: () => fetch("https://movie-fix-server-a-10.vercel.app/movies"),
       },
       {
         path: "/movieDetails/:id",
@@ -36,10 +37,14 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:8000/movies/${params.id}`);
+          const res = await fetch(
+            `https://movie-fix-server-a-10.vercel.app/movies/${params.id}`
+          );
           const movieDetails = await res.json();
 
-          const favRes = await fetch("http://localhost:8000/favorite");
+          const favRes = await fetch(
+            "https://movie-fix-server-a-10.vercel.app/favorite"
+          );
           const favoriteMovie = await favRes.json();
           return { movieDetails, favoriteMovie };
         },
@@ -52,7 +57,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:8000/movies/${params.id}`),
+          fetch(`https://movie-fix-server-a-10.vercel.app/movies/${params.id}`),
       },
       {
         path: "/addMovie",
@@ -69,7 +74,8 @@ const router = createBrowserRouter([
             <MyFavorites />
           </PrivateRoutes>
         ),
-        loader: () => fetch("http://localhost:8000/favorite"),
+        loader: () =>
+          fetch("https://movie-fix-server-a-10.vercel.app/favorite"),
       },
       {
         path: "/about",
