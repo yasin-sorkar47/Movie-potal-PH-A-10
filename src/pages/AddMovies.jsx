@@ -64,10 +64,9 @@ const AddMovies = () => {
         ...formData,
         rating,
         email: user?.email,
-        isFavorite: false,
       };
 
-      fetch("https://movie-fix-server-a-10.vercel.app/movies", {
+      fetch("http://localhost:8000/movies", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

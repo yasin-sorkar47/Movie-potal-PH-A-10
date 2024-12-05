@@ -1,13 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context";
 
 export default function MovieDetails() {
   const navigate = useNavigate();
-  const movie = useLoaderData();
+  const data = useLoaderData();
+  const movie = data.movieDetails;
   const { user } = useContext(AuthContext);
-  console.log(user.email);
+  const favData = data.favoriteMovie;
+  const [favoriteData, setFavoriteData] = useState(favData);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -20,7 +22,7 @@ export default function MovieDetails() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://movie-fix-server-a-10.vercel.app/movies/${id}`, {
+        fetch(`http://localhost:8000/movies/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -38,32 +40,49 @@ export default function MovieDetails() {
     });
   };
 
-  const handleAddToFavorites = (id) => {
-    const email = { email: user.email };
+  const handleAddToFavorites = () => {
+    const updateMovie = {
+      poster: movie.poster,
+      email: user.email,
+      title: movie.title,
+      genre: movie.genre,
+      duration: movie.duration,
+      releaseYear: movie.releaseYear,
+      rating: movie.rating,
+    };
 
-    fetch(`https://movie-fix-server-a-10.vercel.app/status/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(email),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          Swal.fire({
-            title: "Good job!",
-            text: "Your movie has been added to Favorites!",
-            icon: "success",
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "You have added this as Favorite!",
-          });
-        }
+    const isExits = favoriteData.find(
+      (i) => i.email === user.email && i.title === movie.title
+    );
+
+    if (!isExits) {
+      fetch(`http://localhost:8000/favorite`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateMovie),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            const fav = [...favoriteData, updateMovie];
+            setFavoriteData(fav);
+            Swal.fire({
+              title: "Good job!",
+              text: "You have added movie as favorite successfully!",
+              icon: "success",
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You have added this as favorite!",
+        footer: '<a href="#">Why do I have this issue?</a>',
       });
+    }
   };
 
   return (
@@ -123,7 +142,7 @@ export default function MovieDetails() {
 
               <div className="mt-6 flex flex-col space-y-4">
                 <button
-                  onClick={() => handleAddToFavorites(movie._id)}
+                  onClick={handleAddToFavorites}
                   className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md"
                 >
                   Add to Favorites

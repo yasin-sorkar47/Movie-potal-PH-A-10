@@ -1,13 +1,45 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../context";
 
 export default function MyFavorites() {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
-  const movies = data.filter(
-    (movie) => movie?.email === user?.email && movie.isFavorite === true
-  );
+  const filteredMovies = data.filter((movie) => movie?.email === user?.email);
+
+  const [movies, setMovies] = useState(filteredMovies);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:8000/favorite/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              const deletedMovie = movies.filter((movie) => movie._id !== id);
+              setMovies(deletedMovie);
+
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
 
   return (
     <section className=" text-white py-12">
@@ -40,12 +72,12 @@ export default function MyFavorites() {
                   <p className="text-yellow-400 text-sm">
                     Rating: {movie.rating} / 5
                   </p>
-                  <Link
-                    to={`/movieDetails/${movie._id}`}
+                  <button
+                    onClick={() => handleDelete(movie._id)}
                     className="inline-block mt-4 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-center"
                   >
-                    See Details
-                  </Link>
+                    Delete Favorite
+                  </button>
                 </div>
               </div>
             ))}
