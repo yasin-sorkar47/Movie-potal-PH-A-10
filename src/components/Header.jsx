@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { AuthContext } from "../context";
 
@@ -35,33 +35,39 @@ function Header() {
             } absolute lg:static bg-gray-800 w-full lg:w-auto top-16 left-0`}
           >
             <li>
-              <Link to="/" className="block p-2 hover:bg-gray-700">
+              <NavLink to="/" className="block p-2 hover:bg-gray-700">
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/movies" className="block p-2 hover:bg-gray-700">
+              <NavLink to="/movies" className="block p-2 hover:bg-gray-700">
                 All Movies
-              </Link>
+              </NavLink>
             </li>
             {user && (
               <>
                 <li>
-                  <Link to="/addMovie" className="block p-2 hover:bg-gray-700">
+                  <NavLink
+                    to="/addMovie"
+                    className="block p-2 hover:bg-gray-700"
+                  >
                     Add Movie
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/favorites" className="block p-2 hover:bg-gray-700">
+                  <NavLink
+                    to="/favorites"
+                    className="block p-2 hover:bg-gray-700"
+                  >
                     My Favorites
-                  </Link>
+                  </NavLink>
                 </li>
               </>
             )}
             <li>
-              <Link to="/about" className="block p-2 hover:bg-gray-700">
+              <NavLink to="/about" className="block p-2 hover:bg-gray-700">
                 About Us
-              </Link>
+              </NavLink>
             </li>
           </ul>
 

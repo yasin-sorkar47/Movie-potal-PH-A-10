@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../context";
 
 export default function MovieDetails() {
   const navigate = useNavigate();
   const movie = useLoaderData();
+  const { user } = useContext(AuthContext);
+  console.log(user.email);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -32,6 +36,34 @@ export default function MovieDetails() {
           });
       }
     });
+  };
+
+  const handleAddToFavorites = (id) => {
+    const email = { email: user.email };
+
+    fetch(`http://localhost:8000/status/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Good job!",
+            text: "Your movie has been added to Favorites!",
+            icon: "success",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You have added this as Favorite!",
+          });
+        }
+      });
   };
 
   return (
@@ -90,9 +122,18 @@ export default function MovieDetails() {
               </ul>
 
               <div className="mt-6 flex flex-col space-y-4">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md">
+                <button
+                  onClick={() => handleAddToFavorites(movie._id)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md"
+                >
                   Add to Favorites
                 </button>
+                <Link
+                  to={`/updateMovie/${movie._id}`}
+                  className="bg-green-600 hover:bg-green-700 text-white py-2 text-center px-6 rounded-md"
+                >
+                  Update Movie
+                </Link>
                 <button
                   onClick={() => handleDelete(movie._id)}
                   className="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-md"
@@ -106,7 +147,7 @@ export default function MovieDetails() {
         <div className="text-center mt-5">
           <Link
             to={"/movies"}
-            className="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-md"
+            className="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-md"
           >
             See All Movies
           </Link>

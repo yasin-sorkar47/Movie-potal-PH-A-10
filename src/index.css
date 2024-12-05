@@ -14,3 +14,12 @@
     transform: rotate(360deg);
   }
 }
+
+svg.star-svg {
+  display: inline;
+}
+
+.active {
+  border: 1px solid red;
+  border-radius: 5px;
+}
