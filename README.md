@@ -4,7 +4,7 @@ here is the Link
 
 # [https://movfix-99724.web.app](https://movfix-99724.web.app)
 
-### Main Section Design and Toggling Feature
+### Key Features of my project
 
 - in this project you will see many movies card in that card you will get the button clicking that button it will take you to details page.
 - in details page you wil get three buttons.
