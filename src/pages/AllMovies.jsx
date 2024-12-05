@@ -12,7 +12,9 @@ export default function AllMovies() {
   return (
     <section className=" text-white py-12">
       <div className="w-11/12 mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-8 text-center">All Movies</h2>
+        <h2 className="text-3xl font-bold mb-8 text-gray-700  text-center">
+          All Movies
+        </h2>
         <input
           className="border rounded-sm bg-transparent px-4 mb-8 py-1"
           placeholder="Search"

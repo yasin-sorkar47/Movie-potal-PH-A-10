@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { AuthContext } from "../context";
@@ -7,6 +8,23 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { user, singOutUser, setUser } = useContext(AuthContext);
+  const [darkMode, setDarkMode] = useState(() => {
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    return storedTheme ? storedTheme === "dark" : prefersDark;
+  });
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
 
   const onLogout = () => {
     singOutUser()
@@ -20,7 +38,7 @@ function Header() {
   };
 
   return (
-    <div className=" bg-gray-800">
+    <div className=" bg-gray-800 ">
       <nav className="w-11/12 mx-auto text-white p-4">
         <div className="flex items-center justify-between">
           {/* Logo / Website Name */}
@@ -32,7 +50,7 @@ function Header() {
           <ul
             className={`lg:flex lg:space-x-4 ${
               isMenuOpen ? "block" : "hidden"
-            } absolute lg:static bg-gray-800 w-full lg:w-auto top-16 left-0`}
+            } absolute lg:static z-50 bg-gray-800 w-full lg:w-auto top-16 left-0`}
           >
             <li>
               <NavLink to="/" className="block p-2 hover:bg-gray-700">
@@ -73,6 +91,16 @@ function Header() {
 
           {/* Authentication Section */}
           <div className="flex items-center space-x-2 md:space-x-4">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className=" dark:bg-gray-800 text-black  py-2 px-4 rounded"
+            >
+              {darkMode ? (
+                <MdLightMode className="text-xl text-gray-100" />
+              ) : (
+                <MdDarkMode className="text-xl text-gray-100" />
+              )}
+            </button>
             {!user ? (
               <>
                 <button
