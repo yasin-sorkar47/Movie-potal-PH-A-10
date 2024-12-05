@@ -71,7 +71,7 @@ const UpdateMovie = () => {
         rating,
       };
 
-      fetch(`http://localhost:8000/movies/${id}`, {
+      fetch(`https://movie-fix-server-a-10.vercel.app/movies/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

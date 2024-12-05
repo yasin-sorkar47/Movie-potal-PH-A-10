@@ -32,7 +32,7 @@ const AboutUs = () => {
         </div>
         <div>
           <img
-            src="https://thumbs.dreamstime.com/b/handwriting-text-writing-our-mission-concept-meaning-tasks-schedule-need-to-made-them-right-order-success-woman-wear-161510246.jpg"
+            src="https://t3.ftcdn.net/jpg/04/18/52/88/360_F_418528804_xgyFvVsMSHeWk1UgDtR9aoccqSC7BrHy.jpg"
             alt="Movie Experience"
             className="rounded-lg shadow-lg"
           />

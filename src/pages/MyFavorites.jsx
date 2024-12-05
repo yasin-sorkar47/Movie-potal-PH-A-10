@@ -12,7 +12,7 @@ export default function MyFavorites() {
   return (
     <section className=" text-white py-12">
       <div className="w-11/12 mx-auto px-6">
-        <h2 className="text-3xl text-gray-700  font-bold mb-8 text-center">
+        <h2 className="text-3xl text-gray-700 dark:text-gray-100  font-bold mb-8 text-center">
           My Favorites Movies
         </h2>
         {/* Movie Cards */}

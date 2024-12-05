@@ -21,12 +21,13 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:8000/movies?limit=6"),
+        loader: () =>
+          fetch("https://movie-fix-server-a-10.vercel.app/movies?limit=6"),
       },
       {
         path: "/movies",
         element: <AllMovies />,
-        loader: () => fetch("http://localhost:8000/movies"),
+        loader: () => fetch("https://movie-fix-server-a-10.vercel.app/movies"),
       },
       {
         path: "/movieDetails/:id",
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:8000/movies/${params.id}`),
+          fetch(`https://movie-fix-server-a-10.vercel.app/movies/${params.id}`),
       },
       {
         path: "/updateMovie/:id",
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:8000/movies/${params.id}`),
+          fetch(`https://movie-fix-server-a-10.vercel.app/movies/${params.id}`),
       },
       {
         path: "/addMovie",
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
             <MyFavorites />
           </PrivateRoutes>
         ),
-        loader: () => fetch("http://localhost:8000/movies"),
+        loader: () => fetch("https://movie-fix-server-a-10.vercel.app/movies"),
       },
       {
         path: "/about",

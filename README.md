@@ -1,3 +1,13 @@
-# React + Vite
+## My Project Name is MovFix
 
-github-client-site: https://github.com/programming-hero-web-course2/b10-a10-client-side-yasin-sorkar47
+here is the Link
+
+# [https://movfix-99724.web.app](https://movfix-99724.web.app)
+
+### Main Section Design and Toggling Feature
+
+- in this project you will see many movies card in that card you will get the button clicking that button it will take you to details page.
+- in details page you wil get three buttons.
+- one is add to favorites by that you can add movie as your favorite.
+- second is update by that you can update movie.
+- third is delete button by that you can delete movie.

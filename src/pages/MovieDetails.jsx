@@ -20,7 +20,7 @@ export default function MovieDetails() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8000/movies/${id}`, {
+        fetch(`https://movie-fix-server-a-10.vercel.app/movies/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -41,7 +41,7 @@ export default function MovieDetails() {
   const handleAddToFavorites = (id) => {
     const email = { email: user.email };
 
-    fetch(`http://localhost:8000/status/${id}`, {
+    fetch(`https://movie-fix-server-a-10.vercel.app/status/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

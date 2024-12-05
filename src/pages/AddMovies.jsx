@@ -67,7 +67,7 @@ const AddMovies = () => {
         isFavorite: false,
       };
 
-      fetch("http://localhost:8000/movies", {
+      fetch("https://movie-fix-server-a-10.vercel.app/movies", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
