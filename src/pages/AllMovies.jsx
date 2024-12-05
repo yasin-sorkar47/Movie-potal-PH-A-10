@@ -1,12 +1,25 @@
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
 export default function AllMovies() {
-  const movies = useLoaderData();
+  const data = useLoaderData();
+  const [val, setVal] = useState("");
+
+  const movies = data.filter((item) =>
+    item.title.toLowerCase().includes(val.toLowerCase())
+  );
 
   return (
     <section className=" text-white py-12">
       <div className="w-11/12 mx-auto px-6">
         <h2 className="text-3xl font-bold mb-8 text-center">All Movies</h2>
+        <input
+          className="border rounded-sm bg-transparent px-4 mb-8 py-1"
+          placeholder="Search"
+          onChange={(e) => setVal(e.target.value)}
+          type="text"
+          name="search"
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           {/* Movie Cards */}
