@@ -30,6 +30,7 @@ function Header() {
     singOutUser()
       .then(() => {
         console.log("user logged out successfully");
+        navigate("/login");
         setUser(null);
       })
       .catch((error) => {
