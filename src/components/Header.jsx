@@ -135,7 +135,7 @@ function Header() {
                 />
                 <button
                   onClick={onLogout}
-                  className="btn btn-error btn-sm ml-1"
+                  className="btn btn-error btn-sm ml-1 md:ml-2"
                 >
                   Logout
                 </button>
