@@ -1,29 +1,26 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context";
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const [err, setErr] = useState(null);
+
+  const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const { singInUser, singInWithGoogle, setUser } = useContext(AuthContext);
 
   const onSubmit = (data) => {
+    setErr(null);
     // singIn
     singInUser(data.email, data.password)
       .then((result) => {
-        console.log(result);
         reset();
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        setErr("invalid password or email.");
       });
   };
 
@@ -67,11 +64,13 @@ export default function Login() {
               className="input input-bordered"
               required
             />
+            {err && <p className="text-red-500">{err}</p>}
             <label className="label">
               <a href="#" className="label-text-alt link link-hover">
                 Forgot password?
               </a>
             </label>
+
             <label className="label">
               <p className="label-text-alt  ">
                 If you don't have an account please{" "}
