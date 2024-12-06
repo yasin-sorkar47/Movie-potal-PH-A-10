@@ -93,7 +93,7 @@ function Header() {
           <div className="flex items-center space-x-2 md:space-x-4">
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className=" dark:bg-gray-800 text-black  py-2 px-4 rounded"
+              className=" dark:bg-gray-800 text-black  py-2 px-1 rounded"
             >
               {darkMode ? (
                 <MdLightMode className="text-xl text-gray-100" />
@@ -115,6 +115,13 @@ function Header() {
                 >
                   Register
                 </button>
+                {/* Hamburger Icon for Mobile */}
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="lg:hidden text-2xl ml-4 text-white"
+                >
+                  ☰
+                </button>
               </>
             ) : (
               <div className="relative flex items-center">
@@ -128,21 +135,20 @@ function Header() {
                 />
                 <button
                   onClick={onLogout}
-                  className="btn btn-error btn-sm ml-2"
+                  className="btn btn-error btn-sm ml-1"
                 >
                   Logout
+                </button>
+                {/* Hamburger Icon for Mobile */}
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="lg:hidden text-2xl  text-white"
+                >
+                  ☰
                 </button>
               </div>
             )}
           </div>
-
-          {/* Hamburger Icon for Mobile */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-2xl"
-          >
-            ☰
-          </button>
         </div>
       </nav>
     </div>
