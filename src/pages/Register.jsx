@@ -50,7 +50,7 @@ export default function Register() {
           });
       })
       .catch((error) => {
-        console.log(error);
+        setErr("This email has already taken.");
         setUser(null);
       });
   };
