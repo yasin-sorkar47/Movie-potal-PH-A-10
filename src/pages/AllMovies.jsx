@@ -12,9 +12,15 @@ export default function AllMovies() {
   return (
     <section className=" text-white py-12">
       <div className="w-11/12 mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-8 dark:dark:text-gray-100 text-gray-700  text-center">
+        <h2 className="text-3xl font-bold dark:dark:text-gray-100 text-gray-700  text-center">
           All Movies
         </h2>
+        <p className="max-w-[724px] text-gray-700 dark:text-gray-100 mb-8  mt-3 text-center mx-auto">
+          Experience the world of cinema like never before with MoveFix, your
+          gateway to a curated collection of top-rated films. Explore detailed
+          reviews, genres, and timeless classics with an elegantly designed
+          interface tailored for movie enthusiasts.
+        </p>
         <input
           className="border rounded-sm bg-transparent px-4 mb-8 py-1"
           placeholder="Search"

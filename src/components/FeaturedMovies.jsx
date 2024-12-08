@@ -6,7 +6,15 @@ function FeaturedMovies({ movies }) {
   return (
     <section className=" text-white py-12">
       <div className="w-11/12 mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-8 text-center">Featured Movies</h2>
+        <h2 className="text-3xl text-gray-700 dark:text-gray-100 font-bold text-center">
+          Featured Movies
+        </h2>
+        <p className="max-w-[724px] text-gray-700 dark:text-gray-100 mb-8  mt-3 text-center mx-auto">
+          Experience the world of cinema like never before with MoveFix, your
+          gateway to a curated collection of top-rated films. Explore detailed
+          reviews, genres, and timeless classics with an elegantly designed
+          interface tailored for movie enthusiasts.
+        </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           {/* Movie Cards */}
