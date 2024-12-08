@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/fave.png";
 import { AuthContext } from "../context";
 
 function Header() {
@@ -39,27 +39,37 @@ function Header() {
   };
 
   return (
-    <div className=" bg-gray-800 ">
-      <nav className="w-11/12 mx-auto text-white p-4">
+    <>
+      <nav className="w-11/12 mx-auto text-gray-700 dark:text-gray-100 p-4">
         <div className="flex items-center justify-between">
           {/* Logo / Website Name */}
-          <Link to="/" className="text-xl font-bold">
-            <img className="h-8" src={logo} alt="logo" />
+          <Link
+            to="/"
+            className="text-2xl font-bold flex items-center text-gray-700 dark:text-gray-100"
+          >
+            <img className="h-8 mr-1" src={logo} alt="logo" />
+            MoveFix
           </Link>
 
           {/* Navigation Links */}
           <ul
             className={`lg:flex lg:space-x-4 ${
               isMenuOpen ? "block" : "hidden"
-            } absolute lg:static z-50 bg-gray-800 w-full lg:w-auto top-16 left-0`}
+            } absolute lg:static z-50  w-full lg:w-auto top-16 left-0`}
           >
             <li>
-              <NavLink to="/" className="block p-2 hover:bg-gray-700">
+              <NavLink
+                to="/"
+                className="block p-2 hover:text-gray-100 rounded-sm hover:bg-gray-700"
+              >
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/movies" className="block p-2 hover:bg-gray-700">
+              <NavLink
+                to="/movies"
+                className="block p-2 hover:text-gray-100 rounded-sm hover:bg-gray-700"
+              >
                 All Movies
               </NavLink>
             </li>
@@ -68,7 +78,7 @@ function Header() {
                 <li>
                   <NavLink
                     to="/addMovie"
-                    className="block p-2 hover:bg-gray-700"
+                    className="block p-2 hover:text-gray-100 rounded-sm hover:bg-gray-700"
                   >
                     Add Movie
                   </NavLink>
@@ -76,7 +86,7 @@ function Header() {
                 <li>
                   <NavLink
                     to="/favorites"
-                    className="block p-2 hover:bg-gray-700"
+                    className="block p-2 hover:text-gray-100 rounded-sm hover:bg-gray-700"
                   >
                     My Favorites
                   </NavLink>
@@ -84,7 +94,10 @@ function Header() {
               </>
             )}
             <li>
-              <NavLink to="/about" className="block p-2 hover:bg-gray-700">
+              <NavLink
+                to="/about"
+                className="block p-2 hover:text-gray-100 rounded-sm hover:bg-gray-700"
+              >
                 About Us
               </NavLink>
             </li>
@@ -94,12 +107,12 @@ function Header() {
           <div className="flex items-center space-x-2 md:space-x-4">
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className=" dark:bg-gray-800 text-black  py-2 px-1 rounded"
+              className="  text-black  py-2 px-1 rounded"
             >
               {darkMode ? (
-                <MdLightMode className="text-xl text-gray-100" />
+                <MdLightMode className="text-xl dark:text-gray-100 text-gray-700" />
               ) : (
-                <MdDarkMode className="text-xl text-gray-100" />
+                <MdDarkMode className="text-xl dark:text-gray-100 text-gray-700" />
               )}
             </button>
             {!user ? (
@@ -152,7 +165,7 @@ function Header() {
           </div>
         </div>
       </nav>
-    </div>
+    </>
   );
 }
 
