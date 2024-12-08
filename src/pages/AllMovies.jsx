@@ -22,7 +22,7 @@ export default function AllMovies() {
           interface tailored for movie enthusiasts.
         </p>
         <input
-          className="border rounded-sm bg-transparent px-4 mb-8 py-1"
+          className="border text-gray-700 dark:text-gray-100 rounded-sm bg-transparent px-4 mb-8 py-1"
           placeholder="Search"
           onChange={(e) => setVal(e.target.value)}
           type="text"
